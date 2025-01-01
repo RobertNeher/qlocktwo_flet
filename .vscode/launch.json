@@ -16,7 +16,9 @@
       "type": "debugpy",
       "request": "launch",
       "program": "./src/main.py",
-      "console": "integratedTerminal"
+      "console": "integratedTerminal",
+      // "args": ["-m", "${command:pickArgs}", "-o", "${command:pickArgs}"]
+      "args": ["-m 25", "-o 16"]
     }
   ]
 }

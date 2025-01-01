@@ -21,15 +21,21 @@ def watchFace(hour: int, minute: int, settings: map) -> ft.GridView:
 
     charGrid.controls = []
 
+    if minute > 30:
+        hour += 1
+
     #
     # Only 12 hour clock
     #
+    # am = True
+
     if hour > 12:
         hour -= 12
+        # am = False
 
     minuteMask = settings["FiveMinutesMapping"][int(minute/5)][str(minute)]
     hourMask = settings["HoursMapping"][hour][str(hour)]
-
+    # ampmMask = "     11    " if am else "    11     "
     for row in range(0, len(settings["qlockTwoChars"])):
         charRow = settings["qlockTwoChars"][row]
         hourRow = hourMask[row]
@@ -38,38 +44,9 @@ def watchFace(hour: int, minute: int, settings: map) -> ft.GridView:
             charGrid.controls.append(
                 letter(
                     charRow[column],
-                    active=charRow[column] == "1" or hourRow[column] == "1" or minuteRow[column] == "1"
+                    active=hourRow[column] == "1" or minuteRow[column] == "1"
+                    # or (am and row == 5 and ampmMask[column] == "1" or (not am and row == 6 and ampmMask[column] == "1"))
                 )
             )
-            # AM
-            if row == 5 and column == 5:
-                charGrid.controls.extend(
-                    [
-                        letter(
-                            charRow[column],
-                            active=True
-                        ),
-                        letter(
-                            charRow[column + 1],
-                            active=True
-                        )
-                    ]
-                )
-                column += 1
-            # PMs
-            if row == 6 and column == 4:
-                charGrid.controls.extend(
-                    [
-                        letter(
-                            charRow[column],
-                            active=True
-                        ),
-                        letter(
-                            charRow[column + 1],
-                            active=True
-                        )
-                    ]
-                )
-                column += 1
 
     return charGrid

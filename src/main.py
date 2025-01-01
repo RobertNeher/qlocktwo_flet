@@ -34,6 +34,6 @@ def main(page: ft.Page):
         )
         page.expand = 1
         page.update()
-        time.sleep(3)
+        time.sleep(5)
 
 ft.app(main, assets_dir="./assets")

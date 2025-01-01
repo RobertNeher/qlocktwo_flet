@@ -21,7 +21,7 @@ def watchFace(hour: int, minute: int, settings: map) -> ft.GridView:
 
     charGrid.controls = []
 
-    if minute > 30:
+    if minute >= 25:
         hour += 1
 
     #

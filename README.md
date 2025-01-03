@@ -1,9 +1,5 @@
-# Flet app
+# QLOCKTWO
 
-A simple Flet app.
+A squared clock showing the actual time in minutes interval in German language.
 
-To run the app:
-
-```
-flet run [app_directory]
-```
+![QLockTwo: Showing half past seven in German language](./assets/qlocktwo.jpg)
